@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drum Kit</title>
+    <link rel="stylesheet" href="drumkit.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top-bar">
+           
+                <i class="material-icons">expand_more</i>
+                <span>Music Playlist</span>
+                
+                
+                <i id="star" class="material-icons">star_border</i>
+            </div>
+            
+            <div class="img-area">
+                <img src="" alt="">
+            </div>
+            <div class="song-details">
+                <p class="name"></p>
+                <p class="artist"></p>
+
+            </div>
+            <div class="progress-area">
+                <div class="progress-bar"></div>
+                <div class="timer">
+                    <span class="current">0:00</span>
+                    <span class="duration">3:40</span>
+                </div>
+                
+                <audio id="main-audio" src=""></audio>
+            </div>
+            <div class="controls">
+                <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
+                <i id="prev" class="material-icons">skip_previous</i>
+                <div class="play-pause">
+                    <i  class="material-icons">play_arrow</i>
+                </div>
+                <i id="next" class="material-icons">skip_next</i>
+                <i id="more-music" class="material-icons">queue_music</i>
+               </div>
+               <div class="musiccover">
+          <div class="music-list">
+              <div class="header">
+                  <div class="row">
+                      <i class="material-icons">playlist_play</i>
+                      <span>Music list</span>
+                  </div>
+                  <i id="close" class="material-icons">close</i>
+              </div>
+              <ul>
+               
+            </ul>
+
+          </div>
+          
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="keys">
+            <div data-key="65" class="tune">A</div>
+            <div data-key="83"  class="tune">S</div>
+            <div  data-key="68" class="tune">D</div>
+            <div data-key="70" class="tune">F</div>
+            <div data-key="74" class="tune">J</div>
+            <div data-key="75" class="tune">K</div>
+            <div  data-key="76"  class="tune">L</div>
+        </div>
+    </div>
+    <audio data-key="65" src="musics/clap.wav"></audio>
+    <audio  data-key="83"  src="musics/hi-hat.wav"></audio>
+    <audio  data-key="68" src="musics/tom-1.wav"></audio>
+    <audio  data-key="70" src="musics/hi-hat.wav"></audio>
+    <audio  data-key="74" src="musics/clap.wav"></audio>
+    <audio  data-key="75" src="musics/tink.wav"></audio>
+    <audio  data-key="76" src="musics/tom-4.wav"></audio>
+    <script src="drumkit.js"></script>
+    <script src="js/music-list.js"></script>
+    <script src="js/musicplayer6.js"></script>
+    <script>
+        window.addEventListener('keydown', (e) => {
+            let audio = document.querySelector(`audio[data-key='${e.keyCode}']`);
+            let key = document.querySelector(`.tune[data-key='${e.keyCode}']`);
+            if(!audio) return;
+             audio.currentTime = 0; //currenttim playing
+
+            audio.play();
+
+            key.classList.add('playingi');
+
+            setTimeout(() => {
+                key.classList.remove('playingi');
+            }, 80);
+        })
+    </script>
+</body>
+</html>
